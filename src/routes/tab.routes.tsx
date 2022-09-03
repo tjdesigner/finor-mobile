@@ -4,6 +4,7 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { RootStackParamList } from '../@types/navigation'
 import { Moviments, Home } from '../screens'
 import theme from '../global/styles/theme';
+import { Platform } from 'react-native';
 
 
 const HomeTab = createBottomTabNavigator<RootStackParamList>();
@@ -19,8 +20,8 @@ export function TabRoutes() {
                     headerStyle: { backgroundColor: theme.colors.primary },
                     headerTintColor: 'black',
                     headerTransparent: true,
-                    tabBarLabelStyle: { fontSize: 14 },
-                    tabBarStyle: { backgroundColor: theme.colors.primary, borderTopWidth: 0, paddingTop: 8, height: 88 }
+                    tabBarLabelStyle: { fontSize: 14, paddingVertical: 8 },
+                    tabBarStyle: { backgroundColor: theme.colors.primary, borderTopWidth: 0, height: Platform.OS === 'android' ? 68 : 96, paddingTop: 8 }
 
                 }
             }
