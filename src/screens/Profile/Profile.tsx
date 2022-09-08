@@ -7,6 +7,8 @@ import theme from '../../global/styles/theme';
 
 export function Profile({ navigation, route }: RootStackScreenProps<'Profile'>) {
   const { params } = route
+  console.log(params.users);
+
 
   return (
     <View style={styles.container}>

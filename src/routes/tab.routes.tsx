@@ -20,21 +20,19 @@ export function TabRoutes() {
                     headerStyle: { backgroundColor: theme.colors.primary },
                     headerTintColor: 'black',
                     headerTransparent: true,
-                    tabBarLabelStyle: { fontSize: 14, paddingVertical: 8 },
+                    tabBarLabelStyle: { fontSize: 1, paddingVertical: 8, },
+                    tabBarShowLabel: false,
                     tabBarStyle: { backgroundColor: theme.colors.primary, borderTopWidth: 0, height: Platform.OS === 'android' ? 68 : 96, paddingTop: 8 }
-
                 }
             }
         >
             <HomeTab.Screen
-
                 name='Home'
                 component={Home}
                 options={{
                     headerShown: false,
-                    headerTitle: 'asdf',
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialIcons name="home" color={color} size={size} />
+                        <MaterialIcons name="home" color={color} size={36} />
                     )
                 }}
             />
@@ -45,7 +43,7 @@ export function TabRoutes() {
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialIcons name="monetization-on" color={color} size={size} />
+                        <MaterialIcons name="monetization-on" color={color} size={36} />
                     )
                 }}
             />
