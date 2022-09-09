@@ -32,7 +32,7 @@ export function TabRoutes() {
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialIcons name="home" color={color} size={36} />
+                        <MaterialIcons name="home" color={color} size={size} />
                     )
                 }}
             />
@@ -43,7 +43,7 @@ export function TabRoutes() {
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialIcons name="monetization-on" color={color} size={36} />
+                        <MaterialIcons name="monetization-on" color={color} size={size} />
                     )
                 }}
             />

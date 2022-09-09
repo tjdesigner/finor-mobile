@@ -25,7 +25,7 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>com.tjdeveloper.finor</string>
+          <string>com.br.tjdeveloper.finor</string>
         </array>
       </dict>
     </array>

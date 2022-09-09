@@ -5,10 +5,8 @@ import theme from '../../global/styles/theme';
 
 //import { styles } from './styles';
 
-export function Profile({ navigation, route }: RootStackScreenProps<'Profile'>) {
+export function Profile({ navigation, route }: RootStackScreenProps<"Profile">) {
   const { params } = route
-  console.log(params.users);
-
 
   return (
     <View style={styles.container}>

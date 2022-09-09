@@ -13,12 +13,37 @@ declare global {
   }
 }
 
+/**
+ * Types Route Params Profile
+ */
 type UserList = {
   id?: number
   name?: string
   age?: number
 }
 
+/**
+ * Types Route Params Moviments
+ */
+type MovimentEntriesOutputs = {
+  itemName?: string
+  price?: number
+}
+
+type MovimentItems = {
+  entries?: MovimentEntriesOutputs[]
+  outputs?: MovimentEntriesOutputs[]
+}
+
+type MovimentItemsListItems = {
+  id?: number
+  nameList?: string
+  items?: MovimentItems
+}
+
+/**
+ * Interfaces Stack ParamList
+ */
 interface RootStackParamList extends ParamListBase {
   Home: undefined
 
@@ -28,6 +53,10 @@ interface RootStackParamList extends ParamListBase {
 
   Moviments: {
     users?: UserList[]
+  }
+
+  MovimentItems: {
+    listItems: MovimentItemsListItems[]
   }
 }
 

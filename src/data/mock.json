@@ -1,0 +1,60 @@
+
+[
+    {
+        "id": 1,
+        "nameList": "Mercado",
+        "items": {
+            "entries": [
+                {
+                    "itemName": "Cartão Flash",
+                    "price": 2500
+                }
+            ],
+            "outputs": [
+                {
+                    "itemName": "Sabão em pó",
+                    "price": 19.90
+                },
+                {
+                    "itemName": "Macarrão",
+                    "price": 4.90
+                },
+                
+                {
+                    "itemName": "Biscoito",
+                    "price": 1.90
+                },    
+                {
+                    "itemName": "Shampoo",
+                    "price": 9.90
+                },
+                {
+                    "itemName": "Carne",
+                    "price": 29.90
+                },
+                {
+                    "itemName": "Café",
+                    "price": 17.90
+                }
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "nameList": "Rendas",
+        "items": {
+            "entries": [
+                {
+                    "itemName": "Salário GFT dia 15",
+                    "price": 4905
+                }
+            ],
+            "outputs": [
+                {
+                    "itemName": "Conta de Água",
+                    "price": 150
+                }
+            ]
+        }
+    }
+]

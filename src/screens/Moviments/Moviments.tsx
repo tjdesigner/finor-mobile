@@ -1,26 +1,26 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { RootStackScreenProps } from '../../@types/navigation';
-import theme from '../../global/styles/theme';
+import theme, { ContainerMainPage } from '../../global/styles/theme';
+import customData from '../../data/mock.json';
+import { ListItemButton } from './MovimentsStyles';
 
 export function Moviments({ navigation, route }: RootStackScreenProps<'Moviments'>) {
-  const { params } = route
+
+  function handleListView(id: number) {
+    const filterDataForId = customData.filter(x => x.id === id).map(x => x);
+    navigation.navigate('MovimentItems', {
+      listItems: filterDataForId
+    })
+  }
 
   return (
-    <View style={styles.container}>
-      <Text style={{ fontSize: 30, fontWeight: 'bold', letterSpacing: 1, marginBottom: 8 }}>{route.name}</Text>
-      {params?.users?.map(user => (
-        <Text key={user.id} style={{ fontSize: 16, letterSpacing: 1 }}>{user.name} {`tem ${user.age} anos`}</Text>
+    <ContainerMainPage>
+      {customData?.map(list => (
+        <ListItemButton key={list.id} onPress={() => handleListView(list.id)}>
+          <Text>{list.nameList}</Text>
+        </ListItemButton>
       ))}
-    </View>
+    </ContainerMainPage>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: theme.colors.primary,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-});

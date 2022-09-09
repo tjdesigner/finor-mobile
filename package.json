@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "expo start --dev-client",
-    "android": "expo run:android",
-    "ios": "expo run:ios",
+    "android": "expo run:android --no-build-cache",
+    "ios": "expo run:ios --no-build-cache",
     "web": "expo start --web"
   },
   "dependencies": {

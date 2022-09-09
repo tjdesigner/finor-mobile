@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import { RootStackScreenProps, RootStackParamList } from '../../@types/navigation';
+import { RootStackScreenProps } from '../../@types/navigation';
 import theme from '../../global/styles/theme';
 
 const userMock = [

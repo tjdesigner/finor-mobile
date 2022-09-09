@@ -20,14 +20,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.tjdeveloper.finor"
+      "bundleIdentifier": "com.br.tjdeveloper.finor"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.tjdeveloper.finor"
+      "package": "com.br.tjdeveloper.finor"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
