@@ -51,12 +51,15 @@ interface RootStackParamList extends ParamListBase {
     users?: UserList[]
   }
 
+  AddListForm
+
   Moviments: {
     users?: UserList[]
   }
 
   MovimentItems: {
     listItems: MovimentItemsListItems[]
+    nameList?: string
   }
 }
 

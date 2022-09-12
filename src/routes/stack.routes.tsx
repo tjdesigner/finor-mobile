@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../@types/navigation';
-import { Profile, MovimentItems } from '../screens'
+import { Profile, MovimentItems, AddListForm } from '../screens'
 import { TabRoutes } from './tab.routes'
 import theme from '../global/styles/theme';
 
@@ -25,10 +25,17 @@ export function StackRoutes() {
                 component={TabRoutes}
 
             />
+
             <HomeStack.Screen
                 options={{ headerTitle: 'Profile' }}
                 name='Profile'
                 component={Profile}
+            />
+
+            <HomeStack.Screen
+                options={{ headerTitle: 'AddListForm' }}
+                name='AddListForm'
+                component={AddListForm}
             />
 
             <HomeStack.Screen

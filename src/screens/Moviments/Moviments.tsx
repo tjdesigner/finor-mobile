@@ -1,24 +1,25 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { RootStackScreenProps } from '../../@types/navigation';
-import theme, { ContainerMainPage } from '../../global/styles/theme';
+import { ContainerMainPage } from '../../global/styles/theme';
 import customData from '../../data/mock.json';
-import { ListItemButton } from './MovimentsStyles';
+import { ListItemButton, ListItemButtonText } from './MovimentsStyles';
+import { TabBarPageTitle } from '../components';
 
 export function Moviments({ navigation, route }: RootStackScreenProps<'Moviments'>) {
 
-  function handleListView(id: number) {
+  function handleListView(id: number, nameList: string) {
     const filterDataForId = customData.filter(x => x.id === id).map(x => x);
     navigation.navigate('MovimentItems', {
-      listItems: filterDataForId
+      listItems: filterDataForId,
+      nameList,
     })
   }
 
   return (
     <ContainerMainPage>
+      <TabBarPageTitle title='My lists' />
       {customData?.map(list => (
-        <ListItemButton key={list.id} onPress={() => handleListView(list.id)}>
-          <Text>{list.nameList}</Text>
+        <ListItemButton key={list.id} onPress={() => handleListView(list.id, list.nameList)}>
+          <ListItemButtonText>{list.nameList}</ListItemButtonText>
         </ListItemButton>
       ))}
     </ContainerMainPage>

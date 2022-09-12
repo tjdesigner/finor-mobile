@@ -2,7 +2,7 @@
 [
     {
         "id": 1,
-        "nameList": "Mercado",
+        "nameList": "Setembro",
         "items": {
             "entries": [
                 {
@@ -41,7 +41,7 @@
     },
     {
         "id": 2,
-        "nameList": "Rendas",
+        "nameList": "Outros",
         "items": {
             "entries": [
                 {
