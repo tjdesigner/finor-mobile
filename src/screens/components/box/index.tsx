@@ -2,7 +2,7 @@ import { Container, PageTitleComponentProps } from './boxStyles';
 
 export function Box({ ...props }: PageTitleComponentProps) {
   return (
-    <Container {...props}>
+    <Container {...props} >
       {props.children}
     </Container>
   );

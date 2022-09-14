@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home should render page with clinicalAnalysis and pathological tabs enabled 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#43D094",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 30,
+        "fontWeight": "bold",
+        "letterSpacing": 1,
+        "marginBottom": 8,
+      }
+    }
+  >
+    Home
+  </Text>
+  <Text
+    style={
+      Object {
+        "fontSize": 16,
+        "letterSpacing": 1,
+      }
+    }
+  >
+    Parametros
+  </Text>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0, 0, 0, 0.2)",
+        "borderRadius": 48,
+        "bottom": 24,
+        "color": "white",
+        "height": 60,
+        "justifyContent": "center",
+        "left": 40,
+        "opacity": 1,
+        "position": "absolute",
+        "width": 60,
+      }
+    }
+    testID="fab_button_Profile"
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "white",
+          },
+        ]
+      }
+    >
+      <Text />
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0, 0, 0, 0.2)",
+        "borderRadius": 48,
+        "bottom": 24,
+        "color": "white",
+        "height": 60,
+        "justifyContent": "center",
+        "left": 650,
+        "opacity": 1,
+        "position": "absolute",
+        "width": 60,
+      }
+    }
+    testID="fab_button_add"
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "white",
+          },
+        ]
+      }
+    >
+      <Text />
+    </Text>
+  </View>
+</View>
+`;
