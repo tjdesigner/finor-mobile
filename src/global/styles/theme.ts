@@ -9,6 +9,7 @@ export default {
     white: "white",
     black: "black",
     text: "#000000",
+    danger: "#DC1637",
   },
 
   fonts: {
@@ -37,7 +38,7 @@ export default {
     small: `${8}px`,
     default: `${16}px`,
     medium: `${24}px`,
-    large: `${40}px`,
+    large: `${32}px`,
     xLarge: `${44}px`,
     xxLarge: `${48}px`,
     xxxLarge: `${60}px`,
@@ -48,7 +49,7 @@ export default {
     small: `${8}px`,
     default: `${16}px`,
     medium: `${24}px`,
-    large: `${40}px`,
+    large: `${32}px`,
     xLarge: `${44}px`,
     xxLarge: `${48}px`,
     xxxLarge: `${60}px`,
@@ -61,7 +62,7 @@ export default {
     small: 8,
     default: 16,
     medium: 24,
-    large: 40,
+    large: 32,
     xLarge: 44,
     xxLarge: 48,
     xxxLarge: 60,
@@ -72,7 +73,7 @@ export default {
     small: 8,
     default: 16,
     medium: 24,
-    large: 40,
+    large: 32,
     xLarge: 44,
     xxLarge: 48,
     xxxLarge: 60,
@@ -86,4 +87,18 @@ export const ContainerMainPage = styled.View`
   padding-top: ${({ theme }) => theme.spaces.large};
   padding-left: ${({ theme }) => theme.spaces.default};
   padding-right: ${({ theme }) => theme.spaces.default};
+`
+
+interface ScrollMainPageProps {
+  withPadding?: boolean
+}
+
+export const ScrollMainPage = styled.ScrollView<ScrollMainPageProps>`
+  flex: 1;
+  padding-left: ${(props) =>
+    props.withPadding ? ({ theme }) => theme.spaces.default : 0};
+  padding-right: ${(props) =>
+    props.withPadding ? ({ theme }) => theme.spaces.default : 0};
+  background-color: ${({ theme }) => theme.colors.white};
+  padding-top: ${({ theme }) => theme.spaces.large};
 `

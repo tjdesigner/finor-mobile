@@ -23,27 +23,21 @@ type UserList = {
 }
 
 /**
- * Types Route Params Moviments
+ * Types Route Params Moviments ********************
  */
-type MovimentEntriesOutputs = {
-  itemName?: string
-  price?: number
+export interface IMoviment {
+  id: string
+  nameList: string
+  entries: IEntriesOutputs[]
+  outputs: IEntriesOutputs[]
 }
 
-type MovimentItems = {
-  entries?: MovimentEntriesOutputs[]
-  outputs?: MovimentEntriesOutputs[]
+export interface IEntriesOutputs {
+  id?: string
+  itemName: string
+  price: number
 }
-
-type MovimentItemsListItems = {
-  id?: number
-  nameList?: string
-  items?: MovimentItems
-}
-
-/**
- * Interfaces Stack ParamList
- */
+/****************************************************/
 interface RootStackParamList extends ParamListBase {
   Home: undefined
 
@@ -53,13 +47,12 @@ interface RootStackParamList extends ParamListBase {
 
   AddListForm
 
-  Moviments: {
-    users?: UserList[]
-  }
+  Moviments: undefined
 
   MovimentItems: {
-    listItems: MovimentItemsListItems[]
-    nameList?: string
+    items: IMoviment[]
+    nameList: string
+    id: string
   }
 }
 

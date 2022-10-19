@@ -3,6 +3,8 @@ import { SafeAreaView } from 'react-native';
 import Routes from './routes';
 import { ThemeProvider } from 'styled-components';
 import theme from './global/styles/theme';
+import { Provider } from 'react-redux'
+import { store } from './app/store/store';
 
 import {
   useFonts,
@@ -23,7 +25,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <SafeAreaView style={{ backgroundColor: theme.colors.primary }} />
-      <Routes />
+      <Provider store={store}>
+        <Routes />
+      </Provider>
       <StatusBar style="dark" />
     </ThemeProvider>
   );

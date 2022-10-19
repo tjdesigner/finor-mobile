@@ -13,7 +13,7 @@ export const ItemContainer = styled.View`
 export const Title = styled.Text`
   color: ${({ theme }) => theme.colors.black};
   font-size: ${({ theme }) => theme.spaces.medium};
-  padding-bottom: ${({ theme }) => theme.spaces.small};
+  padding-top: ${({ theme }) => theme.spaces.medium};
   font-weight: ${({ theme }) => theme.fonts.weight.level6};
 `
 
