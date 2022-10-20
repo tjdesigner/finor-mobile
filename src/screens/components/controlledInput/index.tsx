@@ -1,6 +1,7 @@
 import React from 'react'
 import { Control, FieldError, Controller } from 'react-hook-form'
 import { TextInput, TextInputProps, Dimensions } from 'react-native'
+import theme from '../../../global/styles/theme'
 
 import { ControllerContainer, Error } from './styles'
 
@@ -22,6 +23,7 @@ export function ControlledInput({ control, error, name, ...rest }: DefaultProps)
                             onChangeText={onChange}
                             value={value}
                             {...rest}
+                            placeholderTextColor={theme.colors.grey}
                         />
                     )}
                 />

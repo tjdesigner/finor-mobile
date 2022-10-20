@@ -7,14 +7,15 @@ export const ItemContainer = styled.View`
   padding-top: ${({ theme }) => theme.spaces.default};
   justify-content: space-between;
   border-bottom-width: 1px;
-  border-bottom-color: ${({ theme }) => theme.colors.primaryLight};
+  border-bottom-color: ${({ theme }) => theme.colors.overlay};
 `
 
 export const Title = styled.Text`
   color: ${({ theme }) => theme.colors.black};
   font-size: ${({ theme }) => theme.spaces.medium};
-  padding-top: ${({ theme }) => theme.spaces.medium};
-  font-weight: ${({ theme }) => theme.fonts.weight.level6};
+  padding-top: ${({ theme }) => theme.spaces.default};
+  padding-bottom: ${({ theme }) => theme.spaces.small};
+  font-weight: ${({ theme }) => theme.fonts.weight.level5};
 `
 
 export const ItemName = styled.Text`

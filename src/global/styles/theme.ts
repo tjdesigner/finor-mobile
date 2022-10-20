@@ -5,6 +5,7 @@ export default {
     primary: "#43D094",
     primaryStrong: "#047e47",
     overlay: "rgba(0, 0, 0, 0.2)",
+    grey: "rgba(0, 0, 0, 0.5)",
     primaryLight: "#7bf9c0",
     white: "white",
     black: "black",
@@ -66,6 +67,7 @@ export default {
     xLarge: 44,
     xxLarge: 48,
     xxxLarge: 60,
+    largestOfAll: 76,
   },
   spacesNumber: {
     xxs: 2,
@@ -74,6 +76,8 @@ export default {
     default: 16,
     medium: 24,
     large: 32,
+    large2: 36,
+    large3: 40,
     xLarge: 44,
     xxLarge: 48,
     xxxLarge: 60,
@@ -100,5 +104,5 @@ export const ScrollMainPage = styled.ScrollView<ScrollMainPageProps>`
   padding-right: ${(props) =>
     props.withPadding ? ({ theme }) => theme.spaces.default : 0};
   background-color: ${({ theme }) => theme.colors.white};
-  padding-top: ${({ theme }) => theme.spaces.large};
+  padding-top: ${({ theme }) => theme.spaces.default};
 `

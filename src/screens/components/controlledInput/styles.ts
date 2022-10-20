@@ -14,10 +14,9 @@ export const Error = styled.Text`
 export const ControllerContainer = styled.View`
   color: ${({ theme }) => theme.colors.danger};
   border-width: 1px;
-  padding: 4px;
-  border-radius: 5px;
-  width: ${width - theme.fontSizeNumber.xxxLarge}px;
-  margin-top: 4px;
-  margin-right: 0px;
-  margin-bottom: 4px;
+  padding: ${theme.spaces.small};
+  border-radius: ${theme.spaces.xs};
+  width: ${width - theme.fontSizeNumber.largestOfAll}px;
+  margin-right: ${theme.spaces.small};
+  margin-bottom: ${theme.spaces.xs};
 `

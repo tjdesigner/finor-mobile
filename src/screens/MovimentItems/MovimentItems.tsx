@@ -22,26 +22,23 @@ interface ItemProps {
 
 const schema = yup.object({
   itemName: yup.string().required("Informe o nome do item").min(3, "Mínimo de 3 caracteres"),
-  price: yup.string().required("Informe o preço do item").min(1)
+  price: yup.number().required("Informe o preço do item").min(1).typeError("Somente números")
 })
 
 export function MovimentItems({ navigation, route }: RootStackScreenProps<'MovimentItems'>) {
   const { items, nameList, id } = route.params
+  const listFilter = items.filter(el => el.id === id)
   const [moviments, setMoviments] = useState<IMoviment[]>(items)
-  const [moviment, setMoviment] = useState<IMoviment>({ id: items[0].id, nameList: items[0].nameList, entries: items[0].entries, outputs: items[0].outputs })
+  const [moviment, setMoviment] = useState<IMoviment>({ id: listFilter[0].id, nameList: listFilter[0].nameList, entries: listFilter[0].entries, outputs: listFilter[0].outputs })
 
-  //NOVO
-  const { control: entriesControl, handleSubmit: handleEntriesSubmit, formState: { errors: errorsEntries } } = useForm<ItemProps>({
+  const { control: entriesControl, handleSubmit: handleEntriesSubmit, formState: { errors: errorsEntries }, reset: resetEntries } = useForm<ItemProps>({
     resolver: yupResolver(schema)
   })
-  const { control: outputsControl, handleSubmit: handleOutputsSubmit, formState: { errors: errorOutputs } } = useForm<ItemProps>({
+  const { control: outputsControl, handleSubmit: handleOutputsSubmit, formState: { errors: errorOutputs }, reset: resetOutputs } = useForm<ItemProps>({
     resolver: yupResolver(schema)
   })
-
 
   const inputRef = useRef<TextInput>(null)
-
-  const listFilter = items.filter(el => el.id === id)
 
   const storeData = useCallback(async (value: IMoviment[]) => {
     getData()
@@ -76,18 +73,21 @@ export function MovimentItems({ navigation, route }: RootStackScreenProps<'Movim
 
   }, [moviment])
 
+  const newMoviments = [...moviments]
+
   const addEntries = useCallback(async (data: IEntriesOutputs) => {
     const newData = { ...data, price: Number(data.price), id: uuidv4() }
     moviment.entries.push(newData)
-    storeData([{ ...moviment, entries: moviment.entries }])
+    storeData([...moviments])
+    resetEntries(moviment)
   }, [])
 
   const addOutputs = useCallback(async (data: IEntriesOutputs) => {
     const newData = { ...data, price: Number(data.price), id: uuidv4() }
     moviment.outputs.push(newData)
-    storeData([{ ...moviment, outputs: moviment.outputs }])
+    storeData(newMoviments)
+    resetOutputs(moviment)
   }, [])
-
 
   const allEntries = listFilter[0].entries.map(e => e.price)
   const allOutputs = listFilter[0].outputs.map(e => e.price)
@@ -98,27 +98,25 @@ export function MovimentItems({ navigation, route }: RootStackScreenProps<'Movim
 
   return (
     <ContainerMainPage>
-
       <StackPageTitle title={nameList} />
-
-      <Box style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
+      <Title>Total: <Text style={{ color: sumTotal >= 0 ? theme.colors.primaryStrong : 'red' }}>{formatCurrency.format(sumTotal)}</Text></Title>
+      <Box style={{ flexDirection: 'row', alignItems: 'flex-start', marginVertical: theme.spacesNumber.small }}>
         <Box style={{ flexDirection: 'column' }}>
-          <ControlledInput name="itemName" control={entriesControl} placeholder="Name" error={errorsEntries.itemName} />
-          <ControlledInput name="price" control={entriesControl} placeholder="Price" error={errorsEntries.price} />
+          <ControlledInput clearButtonMode='always' name="itemName" control={entriesControl} placeholder="entrada/nome" error={errorsEntries.itemName} />
+          <ControlledInput clearButtonMode='always' name="price" control={entriesControl} placeholder="entrada/valor" error={errorsEntries.price} />
         </Box>
-        <TouchableWithoutFeedback onPress={handleEntriesSubmit(addEntries)}><MaterialIcons name="add-circle" color={theme.colors.primary} size={32} /></TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={handleEntriesSubmit(addEntries)}><MaterialIcons name="add-circle" color={theme.colors.primary} size={theme.spacesNumber.large2} /></TouchableWithoutFeedback>
       </Box>
 
       <Box style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
         <Box style={{ flexDirection: 'column' }}>
-          <ControlledInput name="itemName" control={outputsControl} placeholder="Name" error={errorOutputs.itemName} />
-          <ControlledInput name="price" control={outputsControl} placeholder="Price" error={errorOutputs.price} />
+          <ControlledInput name="itemName" control={outputsControl} placeholder="saída/nome" error={errorOutputs.itemName} />
+          <ControlledInput name="price" control={outputsControl} placeholder="saída/valor" error={errorOutputs.price} />
         </Box>
-        <TouchableWithoutFeedback onPress={handleOutputsSubmit(addOutputs)}><MaterialIcons name="add-circle" color={theme.colors.primary} size={30} /></TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={handleOutputsSubmit(addOutputs)}><MaterialIcons name="add-circle" color={theme.colors.primary} size={theme.spacesNumber.large2} /></TouchableWithoutFeedback>
       </Box>
 
       <ScrollMainPage>
-        <Title>Total: <Text style={{ color: sumTotal >= 0 ? theme.colors.black : 'red' }}>{formatCurrency.format(sumTotal)}</Text></Title>
         <Title>Entradas: <Text>{formatCurrency.format(totalEntriesSum)}</Text></Title>
         {listFilter.map(list => (
           list?.entries?.map((el, index) => (
