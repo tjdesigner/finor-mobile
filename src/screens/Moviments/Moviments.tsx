@@ -33,18 +33,6 @@ export function Moviments({ navigation, route }: RootStackScreenProps<'Moviments
     }
   }
 
-  const clearAll = async () => {
-    console.log("ASDFASDF");
-
-    try {
-      await AsyncStorage.clear()
-      getData()
-    } catch (e) {
-      console.log(e);
-      console.log('Done.')
-    }
-  }
-
   const removeItem = async (id: string) => {
     try {
       const value = await AsyncStorage.getItem('@moviments_Key')
@@ -65,7 +53,6 @@ export function Moviments({ navigation, route }: RootStackScreenProps<'Moviments
     const unsubscribe = navigation.addListener('focus', () => {
       getData()
     });
-    console.log('==========', moviments);
     return unsubscribe;
   }, [moviments])
 

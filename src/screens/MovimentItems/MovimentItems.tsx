@@ -67,13 +67,9 @@ export function MovimentItems({ navigation, route }: RootStackScreenProps<'Movim
     const unsubscribe = navigation.addListener('focus', () => {
       getData()
     });
-    console.log('MMMMMM', moviments);
-
     return unsubscribe;
-
   }, [moviment])
 
-  const newMoviments = [...moviments]
 
   const addEntries = useCallback(async (data: IEntriesOutputs) => {
     const newData = { ...data, price: Number(data.price), id: uuidv4() }
@@ -85,7 +81,7 @@ export function MovimentItems({ navigation, route }: RootStackScreenProps<'Movim
   const addOutputs = useCallback(async (data: IEntriesOutputs) => {
     const newData = { ...data, price: Number(data.price), id: uuidv4() }
     moviment.outputs.push(newData)
-    storeData(newMoviments)
+    storeData([...moviments])
     resetOutputs(moviment)
   }, [])
 

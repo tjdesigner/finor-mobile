@@ -2,6 +2,7 @@ export interface IMoviment {
   id: string
   nameList: string
   entries: IEntriesOutputs[]
+  listBalance?: number
   outputs: IEntriesOutputs[]
 }
 

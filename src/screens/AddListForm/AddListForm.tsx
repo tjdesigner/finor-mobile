@@ -1,27 +1,24 @@
 import { RootStackScreenProps } from '../../@types/navigation';
-import { ContainerMainPage } from '../../global/styles/theme';
+import theme, { ContainerMainPage } from '../../global/styles/theme';
 import customData from '../../data/mock.json';
 import { StackPageTitle } from '../components';
 import React, { useEffect, useState } from 'react';
 import { Box } from '../components/box';
-import { Button, Text, TextInput } from 'react-native';
+import { Alert, Button, Text, TextInput, TouchableOpacity } from 'react-native';
 import { IMoviment } from './AddListForm.types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { v4 as uuidv4 } from 'uuid';
 
 
 export function AddListForm({ navigation, route }: RootStackScreenProps<'AddListForm'>) {
-
   const [moviments, setMoviments] = useState<IMoviment[]>([])
-  const [moviment, setMoviment] = useState<IMoviment>({ id: '', nameList: '', entries: [], outputs: [] })
+  const [moviment, setMoviment] = useState<IMoviment>({ listBalance: 0, id: '', nameList: '', entries: [], outputs: [] })
 
   const storeData = async (value: IMoviment[]) => {
     try {
       setMoviments(value)
-      console.log(moviments);
-
       const dataFilter = (id: string) => moviments.filter(el => el.id === id)
-      if (dataFilter(moviment.id).length === 0 && moviment.nameList.length > 4) {
+      if (dataFilter(moviment.id).length === 0 && moviment.nameList.length > 2) {
         await AsyncStorage.setItem('@moviments_Key', JSON.stringify(value))
         navigation.navigate('Moviments')
       }
@@ -44,36 +41,42 @@ export function AddListForm({ navigation, route }: RootStackScreenProps<'AddList
     }
   }
 
-  const clearAll = async () => {
+  const clearAll = async (value = []) => {
     try {
-      await AsyncStorage.clear()
+      setMoviments(value)
+      await AsyncStorage.setItem('@moviments_Key', JSON.stringify(value))
+      navigation.navigate('Moviments')
       getData()
     } catch (e) {
-      console.log(e);
-      console.log('Done.')
+      console.log("CERTO", e);
     }
   }
 
+
+  const feedbackAlert = () => {
+    Alert.alert(
+      'Essa ação apagará todos os dados!',
+      'Você tem certeza disso?',
+      [
+        { text: 'Depois', onPress: () => console.log('Cancel Pressed!') },
+        { text: 'Apagar tudo', onPress: () => clearAll() },
+      ],
+      { cancelable: false }
+    )
+  }
+
   useEffect(() => {
-
     getData()
-    console.log(moviment)
-
-  }, [])
+  }, [moviments])
 
   return (
     <ContainerMainPage>
       <StackPageTitle title='Add List' />
-      <Box backgroundColor='red' margin={0} padding={16} borderRadius={5} borderWidth={1}>
-        <TextInput onChangeText={(value) => setMoviment({ id: uuidv4(), nameList: value, entries: [], outputs: [] })} />
-      </Box>
-      <Button title='SETDATA' onPress={() => storeData([...moviments, { id: moviment.id, nameList: moviment.nameList, entries: [], outputs: [] }])} />
-      <Button title='CLEAR' onPress={clearAll} />
-      {moviments.map((item, index) =>
-        <Text key={index} style={{ color: 'blue', fontSize: 20 }}>
-          {item.nameList}
-        </Text>
-      )}
+      <TextInput placeholder='Nome da Lista' style={{ borderWidth: 1, padding: 16, borderRadius: 4, marginBottom: 16 }} onChangeText={(value) => setMoviment({ listBalance: moviment.listBalance, id: uuidv4(), nameList: value, entries: [], outputs: [] })} />
+      <TouchableOpacity style={{ backgroundColor: theme.colors.primaryStrong, padding: 16, borderRadius: 4, justifyContent: 'center', alignItems: 'center' }} onPress={() => storeData([...moviments, { listBalance: moviment.listBalance, id: moviment.id, nameList: moviment.nameList, entries: [], outputs: [] }])}>
+        <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>Adicionar lista</Text>
+      </TouchableOpacity>
+      <Button title='Limpar todos os dados' onPress={feedbackAlert} />
     </ContainerMainPage >
   );
 }
