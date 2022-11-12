@@ -2,15 +2,17 @@ import styled from "styled-components/native"
 
 export default {
   colors: {
-    primary: "#43D094",
-    primaryStrong: "#047e47",
-    overlay: "rgba(0, 0, 0, 0.2)",
-    grey: "rgba(0, 0, 0, 0.5)",
-    primaryLight: "#7bf9c0",
-    white: "white",
     black: "black",
-    text: "#000000",
     danger: "#DC1637",
+    grey: "rgba(0, 0, 0, 0.5)",
+    light: "rgba(0, 0, 0, 0.08)",
+    overlay: "rgba(0, 0, 0, 0.2)",
+    primary: "#16be6c",
+    primaryStrong: "#1a8b54",
+    secondary: "#43D094",
+    tertiary: "#B3EDD4",
+    text: "#000000",
+    white: "white",
   },
 
   fonts: {
@@ -20,16 +22,18 @@ export default {
       bold: "Poppins_700Bold",
     },
     weight: {
-      level1: 100,
-      level2: 200,
-      level3: 300,
-      level4: 400,
-      level5: 500,
-      level6: 600,
-      level7: 700,
-      level8: 800,
-      level9: 900,
+      normal: "normal",
       bold: "bold",
+      l1: "100",
+      l2: "200",
+      l3: "300",
+      l4: "400",
+      l5: "500",
+      l6: "600",
+      l7: "700",
+      l8: "800",
+      l9: "900",
+      undefined,
     },
   },
   fontSize: {
@@ -40,6 +44,8 @@ export default {
     default: `${16}px`,
     medium: `${24}px`,
     large: `${32}px`,
+    large2: `${36}px`,
+    large3: `${40}px`,
     xLarge: `${44}px`,
     xxLarge: `${48}px`,
     xxxLarge: `${60}px`,
@@ -51,6 +57,8 @@ export default {
     default: `${16}px`,
     medium: `${24}px`,
     large: `${32}px`,
+    large2: `${36}px`,
+    large3: `${40}px`,
     xLarge: `${44}px`,
     xxLarge: `${48}px`,
     xxxLarge: `${60}px`,
@@ -85,6 +93,8 @@ export default {
   },
 }
 
+export const getFontWeight = (str: string) => str as React.CSSProperties
+
 export const ContainerMainPage = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.white};
@@ -96,6 +106,17 @@ export const ContainerMainPage = styled.View`
 interface ScrollMainPageProps {
   withPadding?: boolean
 }
+
+export const ScrollMainPageTabbar = styled.ScrollView<ScrollMainPageProps>`
+  flex: 1;
+  padding-left: ${(props) =>
+    props.withPadding ? ({ theme }) => theme.spaces.default : 0};
+  padding-right: ${(props) =>
+    props.withPadding ? ({ theme }) => theme.spaces.default : 0};
+  background-color: ${({ theme }) => theme.colors.white};
+  padding-top: ${({ theme }) => theme.spaces.default};
+  border-radius: ${({ theme }) => theme.spaces.large};
+`
 
 export const ScrollMainPage = styled.ScrollView<ScrollMainPageProps>`
   flex: 1;

@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView } from 'react-native';
+import { Platform, SafeAreaView } from 'react-native';
 import Routes from './routes';
 import { ThemeProvider } from 'styled-components';
 import theme from './global/styles/theme';
@@ -28,7 +28,7 @@ function App() {
       <Provider store={store}>
         <Routes />
       </Provider>
-      <StatusBar style="dark" />
+      <StatusBar style="inverted" backgroundColor={Platform.OS === 'android' ? theme.colors.primary : 'transparent'} />
     </ThemeProvider>
   );
 }

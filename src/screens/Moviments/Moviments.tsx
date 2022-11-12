@@ -1,5 +1,5 @@
 import { RootStackScreenProps } from '../../@types/navigation';
-import { ContainerMainPage, ScrollMainPage } from '../../global/styles/theme';
+import { ContainerMainPage, ScrollMainPage, ScrollMainPageTabbar } from '../../global/styles/theme';
 import { ListItemButton, ListItemButtonText } from './MovimentsStyles';
 import { TabBarPageTitle } from '../components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -57,7 +57,7 @@ export function Moviments({ navigation, route }: RootStackScreenProps<'Moviments
   }, [moviments])
 
   return (
-    <ScrollMainPage withPadding={true}>
+    <ScrollMainPageTabbar withPadding={true}>
       <TabBarPageTitle title='My lists' />
       {moviments.length > 0 ? moviments?.map(list => (
         <ListItemButton key={list.id} onLongPress={() => removeItem(list.id)} onPress={() => handleListView(list.id, list.nameList)}>
@@ -65,6 +65,6 @@ export function Moviments({ navigation, route }: RootStackScreenProps<'Moviments
         </ListItemButton>
       )) : <Text>Empty</Text>
       }
-    </ScrollMainPage >
+    </ScrollMainPageTabbar >
   );
 }

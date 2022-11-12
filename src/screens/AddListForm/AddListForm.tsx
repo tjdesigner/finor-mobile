@@ -4,13 +4,13 @@ import customData from '../../data/mock.json';
 import { StackPageTitle } from '../components';
 import React, { useEffect, useState } from 'react';
 import { Box } from '../components/box';
-import { Alert, Button, Text, TextInput, TouchableOpacity } from 'react-native';
+import { Alert, Button, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { IMoviment } from './AddListForm.types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { v4 as uuidv4 } from 'uuid';
 
 
-export function AddListForm({ navigation, route }: RootStackScreenProps<'AddListForm'>) {
+export function AddListForm({ navigation }: RootStackScreenProps<'AddListForm'>) {
   const [moviments, setMoviments] = useState<IMoviment[]>([])
   const [moviment, setMoviment] = useState<IMoviment>({ listBalance: 0, id: '', nameList: '', entries: [], outputs: [] })
 
@@ -70,13 +70,19 @@ export function AddListForm({ navigation, route }: RootStackScreenProps<'AddList
   }, [moviments])
 
   return (
-    <ContainerMainPage>
-      <StackPageTitle title='Add List' />
-      <TextInput placeholder='Nome da Lista' style={{ borderWidth: 1, padding: 16, borderRadius: 4, marginBottom: 16 }} onChangeText={(value) => setMoviment({ listBalance: moviment.listBalance, id: uuidv4(), nameList: value, entries: [], outputs: [] })} />
-      <TouchableOpacity style={{ backgroundColor: theme.colors.primaryStrong, padding: 16, borderRadius: 4, justifyContent: 'center', alignItems: 'center' }} onPress={() => storeData([...moviments, { listBalance: moviment.listBalance, id: moviment.id, nameList: moviment.nameList, entries: [], outputs: [] }])}>
-        <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>Adicionar lista</Text>
-      </TouchableOpacity>
-      <Button title='Limpar todos os dados' onPress={feedbackAlert} />
+    <ContainerMainPage justifyContent="space-between">
+      <View>
+        <StackPageTitle title='Nova lista' />
+        <TextInput placeholder='Nome da Lista' style={{ borderWidth: 1, padding: 16, borderRadius: 4, marginBottom: 16 }} onChangeText={(value) => setMoviment({ listBalance: moviment.listBalance, id: uuidv4(), nameList: value, entries: [], outputs: [] })} />
+        <TouchableOpacity style={{ backgroundColor: theme.colors.primary, padding: 16, borderRadius: 4, justifyContent: 'center', alignItems: 'center' }} onPress={() => storeData([...moviments, { listBalance: moviment.listBalance, id: moviment.id, nameList: moviment.nameList, entries: [], outputs: [] }])}>
+          <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>Adicionar lista</Text>
+        </TouchableOpacity>
+      </View>
+
+      <Box justifyContent='center' alignItems='center' paddingVertical={theme.spacesNumber.large}>
+        <Button title='Limpar todos os dados' onPress={feedbackAlert} />
+      </Box>
+
     </ContainerMainPage >
   );
 }

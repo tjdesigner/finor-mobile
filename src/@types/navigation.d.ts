@@ -28,6 +28,7 @@ type UserList = {
 export interface IMoviment {
   id: string
   nameList: string
+  listBalance?: number
   entries: IEntriesOutputs[]
   outputs: IEntriesOutputs[]
 }

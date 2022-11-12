@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, ActivityIndicator } from 'react-native';
 import { RootStackScreenProps } from '../../@types/navigation';
-import theme from '../../global/styles/theme';
+import theme, { getFontWeight, ScrollMainPageTabbar } from '../../global/styles/theme';
 import { FabButton, FabButtonText } from './HomeStyles';
 import { MaterialIcons } from '@expo/vector-icons'
 import { testId } from './../../../e2e/testIds'
@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IMoviment } from '../AddListForm/AddListForm.types';
 import data from './../../data/mock.json'
 import { formatCurrency } from '../../utils';
+import { Box } from '../components/box';
 
 const { fabButtonAdd, fabButtonProfile } = testId.Home
 
@@ -18,9 +19,10 @@ const userMock = [
 
 export function Home({ navigation, route }: RootStackScreenProps<'Home'>) {
   const [moviments, setMoviments] = useState<IMoviment[]>([])
+  const [loading, setloading] = useState(true)
 
-  const handleNavigation = () => {
-    navigation.navigate('AddListForm', {
+  const handleNavigation = (routeName: string) => {
+    navigation.navigate(routeName, {
       users: userMock
     })
   }
@@ -28,7 +30,7 @@ export function Home({ navigation, route }: RootStackScreenProps<'Home'>) {
   const getData = useCallback(async () => {
     try {
       const value = await AsyncStorage.getItem('@moviments_Key')
-
+      setloading(false)
       if (value) {
         const dataParse = await JSON.parse(value)
         return value !== null ? setMoviments(dataParse) : null
@@ -57,30 +59,33 @@ export function Home({ navigation, route }: RootStackScreenProps<'Home'>) {
   const sumGeneral = totalAllEntries - totalAllOutputs
 
   return (
-    <View style={styles.container}>
-      <Text style={{ fontSize: 30, fontWeight: 'bold', letterSpacing: 1, marginBottom: 8 }}>Saldo</Text>
-      <Text style={{ fontSize: 16, letterSpacing: 1 }}>Total Entries: {formatCurrency.format(totalAllEntries)}</Text>
-      <Text style={{ fontSize: 16, letterSpacing: 1 }}>Total Outputs: {formatCurrency.format(totalAllOutputs)}</Text>
-      <Text style={{ fontSize: 16, letterSpacing: 1, color: sumGeneral >= 1 ? theme.colors.black : theme.colors.danger }}>Saldo Total: {formatCurrency.format(sumGeneral)}</Text>
-      <FabButton testID={fabButtonProfile} screenPosition='left' onPress={() => handleNavigation()}>
-        <FabButtonText>
-          <MaterialIcons name='person' size={theme.fontSizeNumber.medium} />
-        </FabButtonText>
-      </FabButton>
-      <FabButton testID={fabButtonAdd} screenPosition='right' onPress={() => handleNavigation()}>
+    <>
+      {loading ?
+        <Box flex={1} backgroundColor={theme.colors.white} justifyContent="center" alignItems='center' borderRadius={theme.spacesNumber.large}>
+          <ActivityIndicator size="large" color={theme.colors.primary} />
+        </Box> : (
+          <ScrollMainPageTabbar flex={1} backgroundColor={theme.colors.white} justifyContent="center" borderRadius={theme.spacesNumber.large} paddingTop={theme.spacesNumber.default}>
+            {<Box backgroundColor={sumGeneral >= 1 ? theme.colors.primaryStrong : theme.colors.danger} style={{ height: 100, alignSelf: 'stretch', borderRadius: theme.spacesNumber.medium, justifyContent: 'center', alignItems: 'center' }} marginHorizontal={16} marginBottom={16}>
+              <Text style={{ fontSize: theme.fontSizeNumber.default, letterSpacing: 1, color: theme.colors.white, marginBottom: theme.spacesNumber.small }}>Saldo Total </Text>
+              <Text style={{ fontSize: theme.fontSizeNumber.medium, letterSpacing: 1, color: theme.colors.white, fontWeight: "bold" }}>{formatCurrency.format(sumGeneral)}</Text>
+            </Box>}
+            <Box backgroundColor={theme.colors.primary} style={{ height: 100, alignSelf: 'stretch', borderRadius: theme.spacesNumber.medium, justifyContent: 'center', alignItems: 'center' }} marginBottom={16} marginHorizontal={16}>
+              <Text style={{ fontSize: theme.fontSizeNumber.default, letterSpacing: 1, color: theme.colors.white, marginBottom: theme.spacesNumber.small }}>Total Entradas</Text>
+              <Text style={{ fontSize: theme.fontSizeNumber.medium, letterSpacing: 1, color: theme.colors.white, fontWeight: "bold" }}>{formatCurrency.format(totalAllEntries)}</Text>
+            </Box>
+            <Box backgroundColor={theme.colors.grey} style={{ height: 100, alignSelf: 'stretch', borderRadius: theme.spacesNumber.medium, justifyContent: 'center', alignItems: 'center' }} marginBottom={16} marginHorizontal={16}>
+              <Text style={{ fontSize: theme.fontSizeNumber.default, letterSpacing: 1, color: theme.colors.white, marginBottom: theme.spacesNumber.small }}>Total Saídas:</Text>
+              <Text style={{ fontSize: theme.fontSizeNumber.medium, letterSpacing: 1, color: theme.colors.white, fontWeight: "bold" }}>{formatCurrency.format(totalAllOutputs)}</Text>
+            </Box>
+
+          </ScrollMainPageTabbar>
+        )
+      }
+      <FabButton testID={fabButtonAdd} screenPosition='right' onPress={() => handleNavigation('AddListForm')}>
         <FabButtonText>
           <MaterialIcons name='add' size={theme.fontSizeNumber.medium} />
         </FabButtonText>
       </FabButton>
-    </View>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: theme.colors.white,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-});

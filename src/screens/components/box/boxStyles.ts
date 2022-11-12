@@ -1,33 +1,57 @@
 import { ReactNode } from "react"
 import { ViewProps } from "react-native"
+import { StyledProps } from "styled-components"
 import styled from "styled-components/native"
 
 export interface PageTitleComponentProps extends ViewProps {
-  children?: ReactNode
+  alignItems?: "baseline" | "flex-start" | "center" | "flex-end" | "stretch"
+  alignSelf?: "baseline" | "flex-start" | "center" | "flex-end" | "stretch"
   backgroundColor?: string
-  padding?: number
-  paddingTop?: number
-  paddingLeft?: number
-  paddingBottom?: number
-  paddingRight?: number
-  paddingVertical?: number
-  paddingHorizontal?: number
-  margin?: number
-  marginTop?: number
-  marginLeft?: number
-  marginBottom?: number
-  marginRight?: number
-  borderRadius?: number
-  borderColor?: string
-  borderWidth?: number
-  borderTopWidth?: number
-  borderLeftWidth?: number
   borderBottomWidth?: number
+  borderColor?: string
+  borderLeftWidth?: number
+  borderRadius?: number
   borderRightWidth?: number
+  borderTopWidth?: number
+  borderWidth?: number
+  children?: ReactNode
+  elevation?: number
   flex?: number
+  flexDirection?: "column" | "column-reverse" | "row" | "row-reverse"
+  justifyContent?:
+    | "flex-start"
+    | "center"
+    | "flex-end"
+    | "row-reverse"
+    | "space-around"
+    | "space-between"
+  margin?: number
+  marginBottom?: number
+  marginHorizontal?: number
+  marginLeft?: number
+  marginRight?: number
+  marginTop?: number
+  marginVertical?: number
+  padding?: number
+  paddingBottom?: number
+  paddingHorizontal?: number
+  paddingLeft?: number
+  paddingRight?: number
+  paddingTop?: number
+  paddingVertical?: number
+  shadowColor?: string
+  shadowOffset?: Object
+  shadowOpacity?: number
+  shadowRadius?: number
 }
 
 export const Container = styled.View<PageTitleComponentProps>`
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : "white"};
+  justify-content: ${(props) =>
+    props.justifyContent ? props.justifyContent : "flex-start"};
+  align-items: ${(props) =>
+    props.alignItems ? props.alignItems : "flex-start"};
+  flex-direction: ${(props) =>
+    props.flexDirection ? props.flexDirection : "column"};
 `

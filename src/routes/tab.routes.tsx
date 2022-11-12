@@ -2,9 +2,10 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { MaterialIcons } from '@expo/vector-icons'
 import { RootStackParamList } from '../@types/navigation'
-import { Moviments, Home } from '../screens'
+import { Moviments, Home, Profile } from '../screens'
 import theme from '../global/styles/theme';
-import { Platform } from 'react-native';
+import { Platform, View } from 'react-native';
+import { ANDROID } from '../utils';
 
 
 const HomeTab = createBottomTabNavigator<RootStackParamList>();
@@ -12,13 +13,14 @@ const HomeTab = createBottomTabNavigator<RootStackParamList>();
 export function TabRoutes() {
     return (
         <HomeTab.Navigator initialRouteName='Home'
+            sceneContainerStyle={{ backgroundColor: theme.colors.primary, marginTop: ANDROID ? 24 : 0 }}
             screenOptions={
                 {
                     headerShown: true,
                     tabBarActiveTintColor: theme.colors.white,
-                    tabBarInactiveTintColor: theme.colors.primaryStrong,
+                    tabBarInactiveTintColor: theme.colors.tertiary,
                     headerStyle: { backgroundColor: theme.colors.primary },
-                    headerTintColor: 'black',
+                    headerTintColor: theme.colors.white,
                     headerTransparent: true,
                     tabBarLabelStyle: { fontSize: 1, paddingVertical: 8, },
                     tabBarShowLabel: false,
@@ -27,12 +29,35 @@ export function TabRoutes() {
             }
         >
             <HomeTab.Screen
+                name='Profile'
+                component={Profile}
+                options={{
+                    headerShown: false,
+                    tabBarIcon: ({ color, size, focused }) => (
+                        <MaterialIcons name="person" color={color} size={focused ? 32 : size} />
+                    )
+                }}
+            />
+
+            <HomeTab.Screen
                 name='Home'
                 component={Home}
                 options={{
                     headerShown: false,
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialIcons name="home" color={color} size={size} />
+                    tabBarIcon: ({ color, size, focused }) => (
+                        <View style={{
+                            marginBottom: 76,
+                            height: 50,
+                            width: 50,
+                            backgroundColor: theme.colors.white,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            borderRadius: 100,
+                            borderWidth: 2,
+                            borderColor: theme.colors.primary,
+                        }}>
+                            <MaterialIcons name="home" color={focused ? theme.colors.primary : color} size={focused ? 32 : size} />
+                        </View>
                     )
                 }}
             />
@@ -42,8 +67,8 @@ export function TabRoutes() {
                 component={Moviments}
                 options={{
                     headerShown: false,
-                    tabBarIcon: ({ color, size }) => (
-                        <MaterialIcons name="monetization-on" color={color} size={size} />
+                    tabBarIcon: ({ color, size, focused }) => (
+                        <MaterialIcons name="monetization-on" color={color} size={focused ? 32 : size} />
                     )
                 }}
             />

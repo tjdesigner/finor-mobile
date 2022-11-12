@@ -1,6 +1,8 @@
+import { TouchableOpacity } from "react-native"
 import styled from "styled-components/native"
+import { MaterialIcons } from "@expo/vector-icons"
 
-export const ItemContainer = styled.View`
+export const ItemContainer = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   padding-bottom: ${({ theme }) => theme.spaces.default};
@@ -15,10 +17,19 @@ export const Title = styled.Text`
   font-size: ${({ theme }) => theme.spaces.medium};
   padding-top: ${({ theme }) => theme.spaces.default};
   padding-bottom: ${({ theme }) => theme.spaces.small};
-  font-weight: ${({ theme }) => theme.fonts.weight.level5};
+  font-weight: ${({ theme }) => theme.fonts.weight.l5};
 `
 
 export const ItemName = styled.Text`
   color: ${({ theme }) => theme.colors.black};
   font-size: ${({ theme }) => theme.spaces.default};
+`
+
+export const ChevronDown = styled(MaterialIcons)`
+  transform: rotate(270deg);
+  margin-right: 4px;
+`
+export const ChevronUp = styled(MaterialIcons)`
+  transform: rotate(90deg);
+  margin-left: 4px;
 `

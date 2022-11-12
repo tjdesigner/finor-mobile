@@ -3,7 +3,7 @@ import { Control, FieldError, Controller } from 'react-hook-form'
 import { TextInput, TextInputProps, Dimensions } from 'react-native'
 import theme from '../../../global/styles/theme'
 
-import { ControllerContainer, Error } from './styles'
+import { ControllerContainer, Error, InputText } from './styles'
 
 type DefaultProps = TextInputProps & {
     control: Control<any>
@@ -19,7 +19,7 @@ export function ControlledInput({ control, error, name, ...rest }: DefaultProps)
                     name={name}
                     control={control}
                     render={({ field: { onChange, value } }) => (
-                        <TextInput
+                        <InputText
                             onChangeText={onChange}
                             value={value}
                             {...rest}

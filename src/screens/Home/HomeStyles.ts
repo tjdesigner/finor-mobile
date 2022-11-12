@@ -21,7 +21,7 @@ export const FabButton = styled(TouchableOpacity)<FabButtonProps>`
   width: ${({ theme }) => theme.spaces.xxxLarge};
   height: ${({ theme }) => theme.spaces.xxxLarge};
   border-radius: ${({ theme }) => theme.spaces.xxLarge};
-  background-color: ${({ theme }) => theme.colors.overlay};
+  background-color: ${({ theme }) => theme.colors.primaryStrong};
   color: ${({ theme }) => theme.colors.white};
   align-items: center;
   justify-content: center;

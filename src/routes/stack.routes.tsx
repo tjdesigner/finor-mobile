@@ -13,9 +13,9 @@ export function StackRoutes() {
             screenOptions={
                 {
                     headerStyle: { backgroundColor: theme.colors.primary, },
-                    headerTintColor: 'black',
+                    headerTintColor: theme.colors.white,
                     headerTransparent: true,
-                    headerTitle: ''
+                    headerTitle: '',
                 }
             }
         >
@@ -27,13 +27,13 @@ export function StackRoutes() {
             />
 
             <HomeStack.Screen
-                options={{ headerTitle: 'Profile' }}
+                options={{ headerTitle: 'Perfil' }}
                 name='Profile'
                 component={Profile}
             />
 
             <HomeStack.Screen
-                options={{ headerTitle: 'AddListForm' }}
+                options={{ headerTitle: 'Criar Lista' }}
                 name='AddListForm'
                 component={AddListForm}
             />
@@ -41,7 +41,7 @@ export function StackRoutes() {
             <HomeStack.Screen
                 name='MovimentItems'
                 component={MovimentItems}
-                options={{ headerTitle: 'List Items' }}
+                options={{ headerTitle: 'Items da lista' }}
             />
         </HomeStack.Navigator>
     )

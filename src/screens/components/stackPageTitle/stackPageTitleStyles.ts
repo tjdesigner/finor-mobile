@@ -1,7 +1,8 @@
 import styled from "styled-components/native"
 
 export const PageTitleContainer = styled.View`
-  padding: ${({ theme }) => theme.spaces.large};
+  padding-top: ${({ theme }) => theme.spaces.xxxLarge};
+  padding-bottom: ${({ theme }) => theme.spaces.default};
   align-self: center;
 `
 

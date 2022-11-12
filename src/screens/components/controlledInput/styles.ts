@@ -5,6 +5,13 @@ import theme from "../../../global/styles/theme"
 
 const { width, height } = Dimensions.get("window")
 
+export const InputText = styled.TextInput`
+  height: ${({ theme }) => theme.spaces.xLarge};
+  padding: ${({ theme }) => theme.spaces.small};
+  align-self: stretch;
+  font-size: ${({ theme }) => theme.spaces.default};
+`
+
 export const Error = styled.Text`
   color: ${({ theme }) => theme.colors.danger};
   margin: ${({ theme }) => theme.spaces.xxs};
@@ -14,9 +21,7 @@ export const Error = styled.Text`
 export const ControllerContainer = styled.View`
   color: ${({ theme }) => theme.colors.danger};
   border-width: 1px;
-  padding: ${theme.spaces.small};
-  border-radius: ${theme.spaces.xs};
-  width: ${width - theme.fontSizeNumber.largestOfAll}px;
-  margin-right: ${theme.spaces.small};
-  margin-bottom: ${theme.spaces.xs};
+  border-radius: ${theme.spaces.small};
+  width: ${width - theme.fontSizeNumber.large}px;
+  margin-bottom: ${theme.spaces.small};
 `
