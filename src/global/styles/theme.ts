@@ -103,14 +103,18 @@ export const ContainerMainPage = styled.View`
   padding-right: ${({ theme }) => theme.spaces.default};
 `
 
-interface ScrollMainPageProps {
+interface MainPageProps {
   withPadding?: boolean
+  justifyContent?: string
+  alignItems?: string
 }
 
-export const ScrollMainPageTabbar = styled.ScrollView<ScrollMainPageProps>`
+export const ScrollMainPageTabbar = styled.View<MainPageProps>`
   flex: 1;
+  justify-content: ${(props) =>
+    props.justifyContent ? props.justifyContent : "flex.start"};
   padding-left: ${(props) =>
-    props.withPadding ? ({ theme }) => theme.spaces.default : 0};
+    props.alignItems ? props.alignItems : "flex.start"};
   padding-right: ${(props) =>
     props.withPadding ? ({ theme }) => theme.spaces.default : 0};
   background-color: ${({ theme }) => theme.colors.white};
@@ -118,7 +122,7 @@ export const ScrollMainPageTabbar = styled.ScrollView<ScrollMainPageProps>`
   border-radius: ${({ theme }) => theme.spaces.large};
 `
 
-export const ScrollMainPage = styled.ScrollView<ScrollMainPageProps>`
+export const ScrollMainPage = styled.ScrollView<MainPageProps>`
   flex: 1;
   padding-left: ${(props) =>
     props.withPadding ? ({ theme }) => theme.spaces.default : 0};
