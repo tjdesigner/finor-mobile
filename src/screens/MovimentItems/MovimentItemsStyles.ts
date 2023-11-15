@@ -1,6 +1,6 @@
 import { TouchableOpacity } from "react-native"
 import styled from "styled-components/native"
-import { MaterialIcons } from "@expo/vector-icons"
+import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 
 export const ItemContainer = styled.TouchableOpacity`
   flex-direction: row;
@@ -27,9 +27,7 @@ export const ItemName = styled.Text`
 
 export const ChevronDown = styled(MaterialIcons)`
   transform: rotate(270deg);
-  margin-right: 4px;
 `
 export const ChevronUp = styled(MaterialIcons)`
   transform: rotate(90deg);
-  margin-left: 4px;
 `

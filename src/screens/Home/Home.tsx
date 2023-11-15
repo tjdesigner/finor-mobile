@@ -1,17 +1,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Button, ActivityIndicator } from 'react-native';
+import { Text, ActivityIndicator } from 'react-native';
 import { RootStackScreenProps } from '../../@types/navigation';
-import theme, { getFontWeight, ScrollMainPageTabbar } from '../../global/styles/theme';
+import theme, { ScrollMainPageTabbar } from '../../global/styles/theme';
 import { FabButton, FabButtonText } from './HomeStyles';
-import { MaterialIcons } from '@expo/vector-icons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { testId } from './../../../e2e/testIds'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IMoviment } from '../AddListForm/AddListForm.types';
 import data from './../../data/mock.json'
 import { formatCurrency } from '../../utils';
-import { Box } from '../components/box';
+import { Box } from '../../components/box';
+import { PhotoIconSVG } from '../../assets/svgs';
+import Illustration from '../../assets/svgs/asset.svg';
 
-const { fabButtonAdd, fabButtonProfile } = testId.Home
+const { fabButtonAdd } = testId.Home
 
 const userMock = [
   { id: 1, name: 'Tiago', age: 39 }, { id: 2, name: 'Poliana', age: 34 }
@@ -61,14 +63,23 @@ export function Home({ navigation, route }: RootStackScreenProps<'Home'>) {
   return (
     <>
       {loading ?
-        <Box flex={1} backgroundColor={theme.colors.white} justifyContent="center" alignItems='center' borderRadius={theme.spacesNumber.large}>
+
+        <Box backgroundColor={theme.colors.white} justifyContent="center" alignItems='center' borderRadius={theme.spacesNumber.large}>
           <ActivityIndicator size="large" color={theme.colors.primary} />
         </Box> : (
-          <ScrollMainPageTabbar flex={1} backgroundColor={theme.colors.white} justifyContent="center" borderRadius={theme.spacesNumber.large} paddingTop={theme.spacesNumber.default}>
-            {<Box backgroundColor={sumGeneral >= 1 ? theme.colors.primaryStrong : theme.colors.danger} style={{ height: 100, alignSelf: 'stretch', borderRadius: theme.spacesNumber.medium, justifyContent: 'center', alignItems: 'center' }} marginHorizontal={16} marginBottom={16}>
-              <Text style={{ fontSize: theme.fontSizeNumber.default, letterSpacing: 1, color: theme.colors.white, marginBottom: theme.spacesNumber.small }}>Saldo Total </Text>
-              <Text style={{ fontSize: theme.fontSizeNumber.medium, letterSpacing: 1, color: theme.colors.white, fontWeight: "bold" }}>{formatCurrency.format(sumGeneral)}</Text>
+          <ScrollMainPageTabbar>
+
+            {<Box justifyContent='center' alignItems='center'>
+              <Box flex={1} height={100} backgroundColor={theme.colors.white} borderRadius={theme.spacesNumber.large}>
+                <Illustration width={200} height={200} />
+              </Box>
+              <Box backgroundColor={sumGeneral >= 1 ? theme.colors.primaryStrong : theme.colors.danger} style={{ height: 100, alignSelf: 'stretch', borderRadius: theme.spacesNumber.medium, justifyContent: 'center', alignItems: 'center' }} marginHorizontal={16} marginBottom={16}>
+                <Text style={{ fontSize: theme.fontSizeNumber.default, letterSpacing: 1, color: theme.colors.white, marginBottom: theme.spacesNumber.small }}>Saldo Total </Text>
+                <Text style={{ fontSize: theme.fontSizeNumber.medium, letterSpacing: 1, color: theme.colors.white, fontWeight: "bold" }}>{formatCurrency.format(sumGeneral)}</Text>
+
+              </Box>
             </Box>}
+
             <Box backgroundColor={theme.colors.primary} style={{ height: 100, alignSelf: 'stretch', borderRadius: theme.spacesNumber.medium, justifyContent: 'center', alignItems: 'center' }} marginBottom={16} marginHorizontal={16}>
               <Text style={{ fontSize: theme.fontSizeNumber.default, letterSpacing: 1, color: theme.colors.white, marginBottom: theme.spacesNumber.small }}>Total Entradas</Text>
               <Text style={{ fontSize: theme.fontSizeNumber.medium, letterSpacing: 1, color: theme.colors.white, fontWeight: "bold" }}>{formatCurrency.format(totalAllEntries)}</Text>
@@ -77,7 +88,6 @@ export function Home({ navigation, route }: RootStackScreenProps<'Home'>) {
               <Text style={{ fontSize: theme.fontSizeNumber.default, letterSpacing: 1, color: theme.colors.white, marginBottom: theme.spacesNumber.small }}>Total Saídas:</Text>
               <Text style={{ fontSize: theme.fontSizeNumber.medium, letterSpacing: 1, color: theme.colors.white, fontWeight: "bold" }}>{formatCurrency.format(totalAllOutputs)}</Text>
             </Box>
-
           </ScrollMainPageTabbar>
         )
       }

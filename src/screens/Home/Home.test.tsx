@@ -5,9 +5,6 @@ import { Home } from './Home';
 import { FabButton } from './HomeStyles';
 import { withTheme } from '../../utils/withTheme';
 import { testId } from './../../../e2e/testIds'
-import { Profile } from '../Profile/Profile';
-import { MaterialIcons } from '@expo/vector-icons'
-import theme from '../../global/styles/theme';
 
 const { fabButtonAdd, fabButtonProfile } = testId.Home
 
@@ -35,7 +32,6 @@ jest.mock('@react-navigation/native', () => ({
 
 describe('Home', () => {
     const onPress = jest.fn()
-    const setOptionsMock = jest.fn()
 
     it('should render page with clinicalAnalysis and pathological tabs enabled', () => {
         const testRenderer = render(withTheme(<Home navigation={{} as any} route={{} as any} />))

@@ -1,11 +1,12 @@
 import { RootStackScreenProps } from '../../@types/navigation';
 import { ContainerMainPage, ScrollMainPage, ScrollMainPageTabbar } from '../../global/styles/theme';
 import { ListItemButton, ListItemButtonText } from './MovimentsStyles';
-import { TabBarPageTitle } from '../components';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { IMoviment } from '../AddListForm/AddListForm.types';
 import { Text } from 'react-native'
+import { TabBarPageTitle } from '../../components';
 
 export function Moviments({ navigation, route }: RootStackScreenProps<'Moviments'>) {
   const [moviments, setMoviments] = useState<IMoviment[]>([])

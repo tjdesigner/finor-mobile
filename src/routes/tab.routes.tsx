@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { MaterialIcons } from '@expo/vector-icons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { RootStackParamList } from '../@types/navigation'
 import { Moviments, Home, Profile } from '../screens'
 import theme from '../global/styles/theme';

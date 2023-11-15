@@ -1,13 +1,15 @@
 import { RootStackScreenProps } from '../../@types/navigation';
 import theme, { ContainerMainPage } from '../../global/styles/theme';
 import customData from '../../data/mock.json';
-import { StackPageTitle } from '../components';
+
 import React, { useEffect, useState } from 'react';
-import { Box } from '../components/box';
+
 import { Alert, Button, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { IMoviment } from './AddListForm.types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { v4 as uuidv4 } from 'uuid';
+import { StackPageTitle } from '../../components';
+import { Box } from '../../components/box';
 
 
 export function AddListForm({ navigation }: RootStackScreenProps<'AddListForm'>) {
@@ -70,7 +72,7 @@ export function AddListForm({ navigation }: RootStackScreenProps<'AddListForm'>)
   }, [moviments])
 
   return (
-    <ContainerMainPage justifyContent="space-between">
+    <ContainerMainPage>
       <View>
         <StackPageTitle title='Nova lista' />
         <TextInput placeholder='Nome da Lista' style={{ borderWidth: 1, padding: 16, borderRadius: 4, marginBottom: 16 }} onChangeText={(value) => setMoviment({ listBalance: moviment.listBalance, id: uuidv4(), nameList: value, entries: [], outputs: [] })} />

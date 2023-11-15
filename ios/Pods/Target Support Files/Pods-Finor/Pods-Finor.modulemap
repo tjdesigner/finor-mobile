@@ -1,6 +1,0 @@
-module Pods_Finor {
-  umbrella header "Pods-Finor-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -2,17 +2,20 @@ import { IEntriesOutputs, IMoviment, RootStackScreenProps } from '../../@types/n
 import theme, { ContainerMainPage, ScrollMainPage } from '../../global/styles/theme';
 import { ItemName, ItemContainer, Title, ChevronDown, ChevronUp } from './MovimentItemsStyles';
 import { formatCurrency } from '../../utils';
-import { StackPageTitle } from '../components';
-import { Box } from '../components/box';
-import { MaterialIcons } from '@expo/vector-icons'
-import { TextInput, View, Text, TouchableOpacity, TouchableWithoutFeedback, Dimensions } from 'react-native';
+
+
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useCallback, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { ControlledInput } from './../components/controlledInput'
+
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { StackPageTitle } from '../../components';
+import { Box } from '../../components/box';
+import { ControlledInput } from '../../components/controlledInput';
 
 interface ItemProps {
   id: string
@@ -82,9 +85,6 @@ export function MovimentItems({ navigation, route }: RootStackScreenProps<'Movim
 
       await getData()
 
-      console.log('===================', moviments);
-
-
     }
     catch (error) {
       console.log(error)
@@ -94,8 +94,6 @@ export function MovimentItems({ navigation, route }: RootStackScreenProps<'Movim
   const removeItemOutputs = useCallback(async (id: string, idItemOutputs: string) => {
     try {
       const data = await getData()
-
-      //console.log('DATA==', data);
 
       const alteredOutputs = data.filter(function (e: { id: string }) {
         return e.id === id
@@ -109,22 +107,15 @@ export function MovimentItems({ navigation, route }: RootStackScreenProps<'Movim
         return e.id !== idItemOutputs
       })
 
-      //const newWWW = await othersList.concat(alteredEntries.splice(1, 0))
-
       console.log('xxxxxxxxxx', othersList.concat(alteredOutputsItems))
 
       setMoviments(othersList.concat(alteredOutputsItems))
-      //console.log('========', newWWW.concat(alteredEntriesItems));
-      //console.log('zzzzzzzz', newWWW);
-
-      //console.log('Nova lista de Entradas', alteredEntriesItems);
-      //console.log('ID', idItemEntries);
 
       await storeData([{ ...moviment, outputs: alteredOutputsItems }])
       setMoviments([{ ...moviment, outputs: alteredOutputsItems }])
 
       // await AsyncStorage.setItem('@moviments_Key', JSON.stringify(alteredUsers));
-      // setMoviments(alteredUsers)
+
     }
     catch (error) {
       console.log(error)
@@ -176,8 +167,16 @@ export function MovimentItems({ navigation, route }: RootStackScreenProps<'Movim
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => setShowForm(!showForm)} style={{ alignSelf: 'center', marginVertical: spacesNumber.default }}>
-        <Box style={{ height: 38, backgroundColor: colors.light, justifyContent: 'center', borderRadius: 38, }} paddingVertical={4} marginVertical={spacesNumber.default} flexDirection='row' alignItems='center' justifyContent='center' paddingLeft={12}>
-          <Text style={{ color: colors.grey, fontSize: fontSizeNumber.default, fontWeight: '500' }}>Novo Registro</Text>
+        <Box style={{ height: spacesNumber.large2 }}
+          borderRadius={spacesNumber.large3}
+          backgroundColor={colors.light}
+          paddingVertical={spacesNumber.xs}
+          marginVertical={spacesNumber.default}
+          paddingRight={spacesNumber.small}
+          paddingLeft={spacesNumber.default}
+          flexDirection='row'
+          alignItems='center'>
+          <Text style={{ color: colors.grey, fontSize: fontSizeNumber.default, fontWeight: '400' }}>novo item</Text>
           {showForm ?
             <ChevronUp
               name="chevron-left"

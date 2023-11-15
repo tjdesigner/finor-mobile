@@ -1,26 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import { Platform, SafeAreaView } from 'react-native';
+
+import { Platform, SafeAreaView, StatusBar } from 'react-native';
 import Routes from './routes';
 import { ThemeProvider } from 'styled-components';
 import theme from './global/styles/theme';
 import { Provider } from 'react-redux'
 import { store } from './app/store/store';
+import 'react-native-get-random-values';
 
-import {
-  useFonts,
-  Poppins_400Regular,
-  Poppins_500Medium,
-  Poppins_700Bold,
-} from '@expo-google-fonts/poppins';
 
 
 function App() {
 
-  const [fontsLoaded] = useFonts({
-    Poppins_400Regular,
-    Poppins_500Medium,
-    Poppins_700Bold,
-  });
 
   return (
     <ThemeProvider theme={theme}>
@@ -28,7 +18,7 @@ function App() {
       <Provider store={store}>
         <Routes />
       </Provider>
-      <StatusBar style="inverted" backgroundColor={Platform.OS === 'android' ? theme.colors.primary : 'transparent'} />
+      <StatusBar barStyle='default' backgroundColor={Platform.OS === 'android' ? theme.colors.primary : 'transparent'} />
     </ThemeProvider>
   );
 }
